@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/faker": "^5.5.9",
     "faker": "^5.5.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/faker": "^5.5.9",
+    "@types/google.maps": "^3.46.0"
+  }
 }

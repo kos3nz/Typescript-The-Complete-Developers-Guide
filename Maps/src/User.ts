@@ -1,11 +1,18 @@
 import faker from 'faker';
+import { Mappable } from './Map';
 
-export class User {
+interface Interactive {
+  graphic: boolean;
+}
+
+// When implementing multiple interfaces, use comma
+export class User implements Mappable, Interactive {
   name: string;
   location: {
     lat: number;
     lng: number;
   };
+  graphic: boolean = false;
 
   constructor() {
     this.name = faker.name.firstName();
@@ -13,5 +20,9 @@ export class User {
       lat: parseFloat(faker.address.latitude()),
       lng: parseFloat(faker.address.longitude()),
     };
+  }
+
+  markerContent(): string {
+    return `User Name: ${this.name}`;
   }
 }
