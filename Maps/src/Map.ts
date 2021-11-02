@@ -11,10 +11,17 @@ export class Map {
   private googleMap: google.maps.Map;
 
   constructor(divId: string) {
-    this.googleMap = new google.maps.Map(document.getElementById(divId), {
-      zoom: 1,
-      center: { lat: 0, lng: 0 },
-    });
+    this.googleMap = new google.maps.Map(
+      document.getElementById(divId) as HTMLElement,
+      {
+        center: { lat: 34.667685918050864, lng: 135.43027967345125 },
+        zoom: 18,
+        mapId: '6b475196092939b2',
+        mapTypeControl: false,
+        fullscreenControl: false,
+        streetViewControl: false,
+      }
+    );
   }
 
   addMarker(mappable: Mappable) {
@@ -24,6 +31,11 @@ export class Map {
         lat: mappable.location.lat,
         lng: mappable.location.lng,
       },
+      // icon: {
+      //   url: 'yoshi_house.svg',
+      //   scaledSize: new google.maps.Size(38, 31),
+      // },
+      // animation: google.maps.Animation.DROP
     });
 
     marker.addListener('click', () => {
