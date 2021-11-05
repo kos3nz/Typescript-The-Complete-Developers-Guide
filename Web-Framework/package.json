@@ -1,0 +1,20 @@
+{
+  "name": "web-framework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:db": "json-server -w db.json",
+    "dev:parcel": "parcel index.html",
+    "dev": "concurrently npm:dev:*"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "json-server": "^0.17.0",
+    "concurrently": "^6.3.0",
+    "parcel": "^2.0.0"
+  }
+}
