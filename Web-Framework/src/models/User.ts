@@ -2,10 +2,11 @@ import { Model } from './Model';
 import { ApiSync } from './ApiSync';
 import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
+import { Collection } from './Collection';
 
 const rootUrl = 'http://localhost:3000/users';
 
-interface UserProps {
+export interface UserProps {
   id?: number;
   name?: string;
   age?: number;
@@ -14,9 +15,16 @@ interface UserProps {
 export class User extends Model<UserProps> {
   static buildUser(attrs: UserProps): User {
     return new User(
-      new Attributes(attrs),
+      new Attributes<UserProps>(attrs),
       new Eventing(),
-      new ApiSync(rootUrl)
+      new ApiSync<UserProps>(rootUrl)
+    );
+  }
+
+  static buildUserCollection(): Collection<User, UserProps> {
+    return new Collection<User, UserProps>(
+      rootUrl,
+      (json: UserProps): User => User.buildUser(json)
     );
   }
 }
