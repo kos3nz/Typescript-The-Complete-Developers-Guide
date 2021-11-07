@@ -8,5 +8,10 @@
     "start:run": "nodemon build/index.js",
     "start": "concurrently npm:start:*"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "concurrently": "^6.3.0",
+    "nodemon": "^2.0.14"
+  }
 }
