@@ -1,6 +1,8 @@
+import { Events } from './Model';
+
 type Callback = () => void;
 
-export class Eventing {
+export class Eventing implements Events {
   events: { [key: string]: Callback[] } = {};
 
   // Registering event handlers
