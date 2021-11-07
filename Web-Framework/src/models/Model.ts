@@ -27,18 +27,14 @@ export class Model<T extends HasId> {
     private sync: Sync<T>
   ) {}
 
-  // just getting back a reference to the method on the Eventing class
-  get on() {
-    return this.events.on;
-  }
-
-  get trigger() {
-    return this.events.trigger;
-  }
-
-  get get() {
-    return this.attributes.get;
-  }
+  /* ==============================
+  NOTE:= Shorthand for getter accessor property
+    -- This syntax normally does not work unless we use shortened syntax inside the constructor arguments
+    -- because the different initializations take place before anything else inside the constructor.
+  ============================== */
+  on = this.events.on;
+  trigger = this.events.trigger;
+  get = this.attributes.get;
 
   set(update: T): void {
     this.attributes.set(update);
