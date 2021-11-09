@@ -60,8 +60,10 @@ export class UserForm {
 
   onSetNameClick = (): void => {
     const input = this.parent.querySelector<HTMLInputElement>('#name-input');
-    const name = input.value;
+    if (input) {
+      const name = input.value;
 
-    this.model.set({ name });
+      this.model.set({ name });
+    }
   };
 }
