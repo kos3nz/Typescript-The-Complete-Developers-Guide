@@ -1,10 +1,7 @@
-import { User } from '../models/User';
+import { View } from './View';
+import { User, UserProps } from '../models/User';
 
-export class UserForm {
-  constructor(public parent: Element, public model: User) {
-    this.bindModel();
-  }
-
+export class UserForm extends View<User, UserProps> {
   template = (): string => {
     return `
       <div>
@@ -16,35 +13,6 @@ export class UserForm {
         <button id="set-age">Set Random Age</button>
       </div>
     `;
-  };
-
-  render = (): void => {
-    this.parent.innerHTML = '';
-
-    const templateElement = document.createElement('template');
-    templateElement.innerHTML = this.template();
-
-    this.bindEvents(templateElement.content);
-
-    this.parent.append(templateElement.content);
-  };
-
-  bindModel = (): void => {
-    this.model.on('change', () => {
-      this.render();
-    });
-  };
-
-  bindEvents = (fragment: DocumentFragment): void => {
-    const eventsMap = this.eventsMap();
-    for (let eventKey of Object.keys(eventsMap)) {
-      const [eventName, selector] = eventKey.split(':'); // ['click', 'button']
-
-      // selector can be 'button', '.class', '#id' because querySelectorAll method is used.
-      fragment.querySelectorAll(selector).forEach((element) => {
-        element.addEventListener(eventName, eventsMap[eventKey]);
-      });
-    }
   };
 
   eventsMap = (): { [key: string]: () => void } => {
