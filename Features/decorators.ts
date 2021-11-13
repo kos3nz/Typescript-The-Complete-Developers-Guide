@@ -23,7 +23,7 @@ function testDecorator(
   key: string,
   desc: PropertyDescriptor
 ): void {
-  // console.log(desc.value); // Cannot read properties of undefined
+  // console.log(desc.value); // @testDecorator color:string... => Cannot read properties of undefined
 }
 
 function parameterDecorator(target: any, key: string, index: number) {
@@ -37,6 +37,9 @@ function classDecorator(constructor: typeof Boat) {
 function logError(errorMessage: string) {
   return function (target: any, key: string, desc: PropertyDescriptor): void {
     const method = desc.value;
+    // console.log(target) // Boat {pilot: Function}
+    // console.log(key) // pilot
+    // console.log(desc); // { value: Function, writable: true, enumerable: true, configurable: true}
     // desc.value = {
     // throw new Error();
     // console.log('swish');
